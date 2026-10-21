@@ -1,0 +1,34 @@
+{
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/fachkonferenz-bau-und-betrieb-von-senioren-und-pflegeeinrichtungen/",
+      "permanent": false
+    }
+  ],
+  "headers": [
+    {
+      "source": "/fachkonferenz-bau-und-betrieb-von-senioren-und-pflegeeinrichtungen/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ]
+}
