@@ -32,4 +32,12 @@ ProxyPassReverse /fachkonferenz-bau-und-betrieb-von-senioren-und-pflegeeinrichtu
 ```
 
 ## Tracking
-Google Analytics 4 (G-ZF9DT30DB7) lädt erst nach Zustimmung im Cookie-Banner (localStorage-Schlüssel `mfs-consent`).
+- Google Tag Manager **GTM-M6NMLGH** wird im `<head>` geladen. Vorher setzt die Seite Consent Mode v2 (alles „denied“) und `dataLayer.push({ lp_id: 'LP_Senioren' })`.
+- GA4 **G-ZF9DT30DB7** wird zusätzlich direkt per gtag geladen, erst nach Zustimmung im Cookie-Banner (localStorage-Schlüssel `mfs-consent`). Das Banner sendet dabei `gtag('consent','update', …)`.
+- Alle Ereignisse heißen `lp_sen_…` (CTAs je Platzierung, PDF, Telefon/E-Mail, Programm-Tab, Scroll 25/50/75/90 %, Verweildauer 30 s/60 s/2 min). Details: `LP_Senioren_GTM_Tracking-Plan.xlsx`, Container: `GTM_LP_Senioren_Import.json` (nicht Teil dieses Repos).
+
+## Sprungmarken (Google-Ads-Sitelinks)
+#themen · #besichtigungen · #fuer-wen · #programm · #referentinnen · #preise / #teilnahme · #rueckblick-2025 · #anmeldung
+
+## Assets
+Bilder als WebP in Anzeigegröße, Hero-Video 1280×720 ohne Ton (`b1_hero-neu-720.mp4`), Social-Vorschau `og-image.jpg` (1200×630). Geänderte Dateien bekommen neue Namen, weil `assets/` 30 Tage gecacht wird.
