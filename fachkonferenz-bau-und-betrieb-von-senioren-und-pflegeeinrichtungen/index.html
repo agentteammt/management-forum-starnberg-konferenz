@@ -87,16 +87,8 @@
     dataLayer.push({ lp_id: 'LP_Senioren', lp_name: 'Fachkonferenz Senioren 2026' });
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M6NMLGH');
     }
-    window.mfsLoadGA = function () {
-      if (window.__mfsGA) return; window.__mfsGA = true;
-      var s = document.createElement('script'); s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-ZF9DT30DB7';
-      document.head.appendChild(s);
-      window.gtag = function(){ dataLayer.push(arguments); };
-      gtag('js', new Date());
-      gtag('config', 'G-ZF9DT30DB7', { anonymize_ip: true });
-    };
-    try { if (localStorage.getItem('mfs-consent') === 'granted') window.mfsLoadGA(); } catch (e) {}
+    window.lpSenConsentEvent = function () { if (window.__lpSenConsent) return; window.__lpSenConsent = true; dataLayer.push({ event: 'lp_sen_consent_granted', lp_id: 'LP_Senioren' }); };
+    try { if (localStorage.getItem('mfs-consent') === 'granted') window.lpSenConsentEvent(); } catch (e) {}
   </script>
 </helmet>
 
@@ -766,8 +758,8 @@ class Component extends DCLogic {
     try { localStorage.setItem('mfs-consent', v); } catch (e) {}
     const g = v === 'granted' ? 'granted' : 'denied';
     if (window.gtag) window.gtag('consent', 'update', { ad_storage: g, ad_user_data: g, ad_personalization: g, analytics_storage: g });
-    if (v === 'granted' && window.mfsLoadGA) window.mfsLoadGA();
-    if (v === 'denied' && window.__mfsGA) location.reload();
+    if (v === 'granted' && window.lpSenConsentEvent) window.lpSenConsentEvent();
+    if (v === 'denied' && window.__lpSenConsent) location.reload();
     this.setState({ consent: v, cookiesOpen: false });
   };
   b1Ref = React.createRef();
